@@ -30,7 +30,7 @@ function Clock() {
     return () => clearInterval(tick);
   }, []);
 
-  if (!mounted) return <div className="text-xs font-mono text-[#7e7e7e] tracking-[0.48px] opacity-0">00:00:00 GMT+7</div>;
+  if (!mounted) return <div className="flex items-center gap-2 text-xs font-mono text-[#7e7e7e] tracking-[0.48px] opacity-0">00:00:00 GMT+7</div>;
 
   return (
     <div className="flex items-center gap-2 text-xs font-mono text-[#7e7e7e] tracking-[0.48px]">
@@ -49,9 +49,9 @@ export default function Home() {
   const constraintsRef = useRef<HTMLDivElement>(null);
 
   const previews = [
-    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", initialPos: { x: 20, y: 20, rotate: -5 } },
-    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", initialPos: { x: 80, y: 60, rotate: -7 } },
-    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", initialPos: { x: 140, y: 15, rotate: 14 } },
+    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", initialPos: { left: "10%", top: "15%", rotate: -5 } },
+    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", initialPos: { left: "55%", top: "10%", rotate: 14 } },
+    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", initialPos: { left: "50%", top: "50%", rotate: -7 } },
   ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,7 +86,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white overflow-x-hidden font-sans">
+    <div className="flex min-h-screen bg-white overflow-x-hidden font-sans font-normal text-[#121212]">
       
       {/* SIDEBAR - Fixed on desktop/tablet */}
       <aside className="hidden md:flex fixed left-0 top-0 h-screen w-[300px] lg:w-[400px] flex-col border-r border-dashed border-[rgba(125,125,125,0.2)] bg-[#F7F7F7] z-20 overflow-y-auto">
@@ -112,7 +112,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-2xl font-semibold text-[#121212] tracking-[0.24px]">Mita</span>
+                    <span className="text-2xl font-medium text-[#121212] tracking-[0.24px]">Mita</span>
                     <svg className="w-[19px] h-[19px]" fill="none" viewBox="0 0 19 17.8824">
                       <path clipRule="evenodd" d={svgPaths.p5064a00} fill="#1DB7F9" fillRule="evenodd" />
                     </svg>
@@ -121,14 +121,16 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-base text-[#7e7e7e] tracking-[0.16px] leading-6">
-                I build and share Framer templates - so you can <span className="font-bold text-[#1a1a1a]">skip the blank canvas</span> and focus on what actually matters.
+                I build and share Framer templates - so you can <span className="font-medium text-[#1a1a1a]">skip the blank canvas</span> and focus on what actually matters.
               </p>
             </div>
 
             {/* CTA Box */}
-            <div className="bg-[rgba(125,125,125,0.07)] rounded-xl p-5 flex items-center gap-3">
+            <div className="bg-[rgba(125,125,125,0.07)] rounded-xl p-5 flex items-center gap-3 -mt-6">
               <div className="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                <ExternalLink className="w-5 h-5 text-[#080808]" />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 17V21M21 19H17M12 3C12 7.97053 7.97053 12 3 12C7.97053 12 12 16.0295 12 21C12 16.0295 16.0295 12 21 12C16.0295 12 12 7.97053 12 3ZM5 3C5 4.10456 4.10456 5 3 5C4.10456 5 5 5.89544 5 7C5 5.89544 5.89544 5 7 5C5.89544 5 5 4.10456 5 3Z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                </svg>
               </div>
               <p className="text-sm text-[#7e7e7e] tracking-[0.14px] leading-5">
                 3 free templates in the works. Sign up to get them first.
@@ -178,18 +180,18 @@ export default function Home() {
                  <Image src="/images/avatar.png" alt="Mita" fill className="object-cover" />
                </div>
                <div className="flex flex-col gap-1">
-                 <h2 className="text-xl font-bold">Mita</h2>
+                 <h2 className="text-xl font-medium">Mita</h2>
                  <p className="text-sm text-[#7e7e7e]">Framer Web Designer</p>
                </div>
                <p className="text-sm text-[#7e7e7e] leading-relaxed">
-                 I build and share Framer templates - so you can <span className="font-bold text-[#1a1a1a]">skip the blank canvas</span> and focus on what actually matters.
+                 I build and share Framer templates - so you can <span className="font-medium text-[#1a1a1a]">skip the blank canvas</span> and focus on what actually matters.
                </p>
             </div>
           </div>
 
           {/* Title Section */}
           <div className="p-6 md:p-12 lg:px-16 lg:pt-20">
-            <h1 className="text-[38px] md:text-[48px] lg:text-[64px] leading-tight font-bold tracking-tight text-[#080808] mb-4">
+            <h1 className="text-[38px] md:text-[48px] lg:text-[64px] leading-tight font-medium tracking-tight text-[#080808] mb-4">
               Sneak a peek at<br />what&apos;s coming.
             </h1>
             <p className="text-base text-[#7e7e7e] max-w-lg leading-relaxed">
@@ -201,7 +203,7 @@ export default function Home() {
           <div className="px-6 md:px-12 lg:px-16 py-8">
             <div 
               ref={constraintsRef}
-              className="relative w-full h-[320px] lg:h-[500px] border-2 border-dashed border-[rgba(125,125,125,0.2)] rounded-2xl overflow-hidden bg-white/30 backdrop-blur-sm"
+              className="relative w-full h-[320px] lg:h-[500px] border-2 border-dashed border-[rgba(125,125,125,0.2)] rounded-2xl overflow-hidden"
             >
               {previews.map((item) => (
                 <motion.div
@@ -209,13 +211,20 @@ export default function Home() {
                   drag
                   dragConstraints={constraintsRef}
                   dragElastic={0.1}
+                  dragMomentum={false}
+                  dragTransition={{ bounceStiffness: 400, bounceDamping: 30 }}
                   initial={item.initialPos}
-                  whileHover={{ scale: 1.05, zIndex: 50 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="absolute w-[180px] lg:w-[280px] aspect-[4/3] cursor-grab active:cursor-grabbing"
+                  whileHover={{ scale: 1.01, zIndex: 50, rotate: 0 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="absolute w-[34%] max-w-[340px] h-[191px] cursor-grab active:cursor-grabbing"
+                  style={{
+                    left: item.initialPos.left,
+                    top: item.initialPos.top,
+                    rotate: item.initialPos.rotate
+                  }}
                   onClick={() => setActiveImage(item.src)}
                 >
-                  <div className="w-full h-full bg-white rounded-xl p-1.5 shadow-xl border border-gray-100">
+                  <div className="w-full h-full bg-white rounded-xl p-1.5 shadow-xl border border-[rgba(0,0,0,0.05)]">
                     <div className="relative w-full h-full rounded-lg overflow-hidden">
                       <Image src={item.src} alt={item.alt} fill className="object-cover" />
                     </div>
@@ -226,24 +235,27 @@ export default function Home() {
           </div>
 
           {/* Form Section */}
-          <div className="px-6 md:px-12 lg:px-16 py-12 lg:py-24 flex justify-start">
-            <div className="bg-white rounded-[24px] border border-dashed border-[rgba(125,125,125,0.2)] p-8 w-full max-w-[480px] shadow-sm">
+          <div className="px-6 md:px-12 lg:px-16 py-12 lg:py-24 flex justify-center relative">
+            {/* White Gradient Container */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none" />
+            
+            <div className="bg-white rounded-[24px] border border-dashed border-[rgba(125,125,125,0.2)] p-8 w-full max-w-[480px] shadow-sm relative z-10 transition-shadow hover:shadow-md">
               <div className="flex flex-col gap-6">
-                <span className="text-[10px] font-mono font-bold tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
+                <span className="text-[10px] font-mono font-medium tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
                 <p className="text-[#7e7e7e] leading-relaxed">
-                  Drop your email and I&apos;ll send you all 3 the moment they&apos;re live. <span className="font-bold text-[#1a1a1a]">Free, forever.</span>
+                  Drop your email and I&apos;ll send you all 3 the moment they&apos;re live. <span className="font-medium text-[#1a1a1a]">Free, forever.</span>
                 </p>
                 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono font-bold text-[#7e7e7e] uppercase">Name</label>
+                    <label className="text-[10px] font-mono font-medium text-[#7e7e7e] uppercase">Name</label>
                     <input type="text" name="name" required placeholder="Jane Smith" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-2 focus:ring-[#1a1a1a]/10 transition-all font-medium" disabled={loading} />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono font-bold text-[#7e7e7e] uppercase">Email</label>
+                    <label className="text-[10px] font-mono font-medium text-[#7e7e7e] uppercase">Email</label>
                     <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-2 focus:ring-[#1a1a1a]/10 transition-all font-medium" disabled={loading} />
                   </div>
-                  <button type="submit" className="h-12 bg-[#1a1a1a] text-white rounded-xl font-bold hover:opacity-90 transition-opacity disabled:opacity-50 mt-2" disabled={loading}>
+                  <button type="submit" className="h-12 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 mt-2" disabled={loading}>
                     {loading ? "Sending..." : "Send me the templates"}
                   </button>
                   
@@ -257,13 +269,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Footer Logo */}
-          <div className="px-6 md:px-12 lg:px-16 pb-20">
-             <div className="relative select-none pointer-events-none">
-                <h2 className="text-[15vw] font-bold text-[#1a1a1a] opacity-5 text-center leading-none tracking-tighter whitespace-nowrap">
-                  Mita Design
-                </h2>
-                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white to-transparent" />
+          {/* Footer Logo Watermark */}
+          <div className="px-6 md:px-12 lg:px-16 pb-20 relative overflow-hidden">
+             <div className="relative w-full aspect-[5/1] select-none pointer-events-none overflow-hidden">
+                <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain" />
+                {/* 100% relative overlay to create gradient coverage */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-white/0 z-10" />
              </div>
           </div>
         </div>
@@ -284,12 +295,12 @@ export default function Home() {
             <motion.div
               drag dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
               dragElastic={0.2}
-              className="relative w-[90vw] md:w-[70vw] aspect-[4/3] shadow-2xl rounded-2xl overflow-hidden bg-white border border-gray-100"
+              className="relative max-h-[50vh] aspect-auto shadow-2xl rounded-2xl overflow-hidden bg-white border border-gray-100"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image src={activeImage} alt="Preview" fill className="object-cover" />
+              <Image src={activeImage} alt="Preview" width={800} height={1200} className="w-auto h-full max-h-[50vh] object-contain" />
             </motion.div>
-            <button className="absolute top-8 right-8 p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+            <button className="absolute top-8 right-8 p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors" onClick={() => setActiveImage(null)}>
                <X className="w-6 h-6 text-gray-600" />
             </button>
           </motion.div>

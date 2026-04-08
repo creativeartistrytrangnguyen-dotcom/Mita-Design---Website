@@ -1,21 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  
+  --breakpoint-md: 744px;
+  --breakpoint-lg: 1200px;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-sidebar: #F7F7F7;
+  --bg-content: #FFFFFF;
+  --text-primary: #121212;
+  --text-secondary: #7E7E7E;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base structural styles */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  color: #121212;
+  margin: 0;
+  font-family: "Geist", sans-serif;
+  font-weight: 400; /* Force regular by default */
+}
+
+strong, .font-medium {
+  font-weight: 500; /* Force medium for emphasis */
+}
+
+b {
+  font-weight: 500;
+}
+
+/* Eliminate bold across common elements */
+h1, h2, h3, h4, button {
+  font-weight: 500;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
 }
