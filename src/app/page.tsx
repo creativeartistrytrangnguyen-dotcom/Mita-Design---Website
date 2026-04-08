@@ -277,8 +277,10 @@ export default function Home() {
                         hover: { scale: hoverScale, rotate: isTouchDevice ? item.rotate : 0 }
                       }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="w-full h-full bg-white rounded-[12px] p-[5px] shadow-2xl border border-[rgba(0,0,0,0.05)] overflow-hidden relative cursor-pointer"
-                      onClick={() => setActiveImage(item.src)}
+                      className={`w-full h-full bg-white rounded-[12px] p-[5px] shadow-2xl border border-[rgba(0,0,0,0.05)] overflow-hidden relative ${isTouchDevice ? "cursor-pointer" : ""}`}
+                      onClick={() => {
+                        if (isTouchDevice) setActiveImage(item.src);
+                      }}
                     >
                     <div className="relative w-full h-full rounded-[8px] overflow-hidden pointer-events-none">
                       <Image src={item.src} alt={item.alt} fill className="object-cover" />
