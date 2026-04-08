@@ -247,11 +247,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Portfolio Wall - Clustered & Scale (1.2 at Desktop) */}
+          {/* Portfolio Wall - Clustered */}
           <div className="px-6 md:px-12 lg:px-10 py-8 lg:py-16">
             <div 
               ref={constraintsRef}
-              className="relative w-full h-[320px] lg:h-[500px] overflow-visible"
+              className="relative w-full h-[416px] lg:h-[500px] overflow-visible"
             >
               {previews.map((item) => (
                   <motion.div
