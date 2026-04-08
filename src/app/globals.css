@@ -1,62 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --bg-color: #F7F7F7;
-  --dot-color: #EBEBEB;
-  --text-primary: #1A1A1A;
-  --text-secondary: #666666;
-  --text-meta: #999999;
-  --item-bg: #EEEEEE;
-  --btn-bg: #333333;
-  --btn-text: #FFFFFF;
-  --accent-blue: #0084FF;
-  --accent-green: #00D14B;
-  --ring-color: #E2E2E2;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-family: var(--font-geist-sans), sans-serif;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.2s;
-}
-
-a:hover {
-  opacity: 0.7;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.mono {
-  font-family: var(--font-geist-mono), monospace;
-}
-
-.container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 48px 24px 100px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  position: relative;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: var(--ring-color);
-  border: none;
-  margin: 0;
-  border-style: dashed;
-  background: none;
-  border-top: 1px dashed var(--ring-color);
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
 }
