@@ -28,12 +28,11 @@ export async function POST(req: Request) {
     const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
     if (googleClientEmail && googlePrivateKey && spreadsheetId) {
-      const auth = new google.auth.JWT(
-        googleClientEmail,
-        undefined,
-        googlePrivateKey,
-        ["https://www.googleapis.com/auth/spreadsheets"]
-      );
+      const auth = new google.auth.JWT({
+        email: googleClientEmail,
+        key: googlePrivateKey,
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+      });
 
       const sheets = google.sheets({ version: "v4", auth });
       
