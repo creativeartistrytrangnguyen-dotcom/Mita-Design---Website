@@ -1,10 +1,66 @@
-/* Specific components CSS for page.tsx */
+/* 
+  ==========================================
+  LAYOUT: SPLIT SCREEN ARCHITECTURE
+  ==========================================
+*/
+
+.layout-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* LEFT SIDEBAR (Fixed 400px Desktop) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: calc(50% - 600px); /* Center relative to max-width */
+  width: 400px;
+  height: 100vh;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px dashed var(--ring-color);
+  z-index: 10;
+  background-color: transparent;
+}
+
+/* Adjust sidebar when window is smaller than 1200px but still flex active */
+@media (max-width: 1200px) {
+  .sidebar {
+    left: 0;
+  }
+}
+
+/* RIGHT CONTENT */
+.content {
+  margin-left: 400px;
+  width: calc(100% - 400px);
+  padding: 80px 48px 120px 80px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 
+  ==========================================
+  SIDEBAR COMPONENTS
+  ==========================================
+*/
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.logo-text {
+  color: var(--text-primary);
 }
 
 .clock {
@@ -16,28 +72,28 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 10px;
+  margin-bottom: 32px;
 }
 
 .avatar-wrapper {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
 }
 
 .avatar-img {
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .status-dot {
   position: absolute;
-  bottom: 3px;
-  right: 3px;
-  width: 14px;
-  height: 14px;
+  bottom: 0px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
   background-color: var(--accent-green);
-  border: 2.5px solid var(--bg-color);
+  border: 3px solid var(--bg-color);
   border-radius: 50%;
 }
 
@@ -54,6 +110,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  letter-spacing: -0.5px;
 }
 
 .verified-icon {
@@ -61,17 +118,16 @@
 }
 
 .profile-title {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-secondary);
   margin: 0;
 }
 
 .profile-bio {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--text-secondary);
   margin: 8px 0 0 0;
-  max-width: 90%;
 }
 
 .profile-bio strong {
@@ -80,7 +136,7 @@
 }
 
 .cta-box {
-  background-color: #F0F0F0;
+  background-color: #F1F1F1;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -88,6 +144,9 @@
   gap: 12px;
   font-size: 14px;
   color: var(--text-secondary);
+  margin-bottom: auto; /* Push links to bottom if needed, or just let it stack */
+  border: 1px dashed #E0E0E0;
+  margin-bottom: 40px;
 }
 
 .cta-icon {
@@ -105,78 +164,112 @@
 .links-section {
   display: flex;
   flex-direction: column;
+  margin-top: auto; /* Push contact links downwards naturally */
 }
 
 .link-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   padding: 16px 0;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .link-text {
   margin-left: auto;
 }
 
+/* 
+  ==========================================
+  CONTENT COMPONENTS
+  ==========================================
+*/
 .sneak-peek-section {
-  margin-top: 20px;
+  margin-bottom: 120px;
 }
 
 .sneak-peek-title {
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 500;
   line-height: 1.1;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   margin: 0 0 16px 0;
+  color: var(--text-primary);
 }
 
 .sneak-peek-desc {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-secondary);
-  margin: 0 0 40px 0;
+  margin: 0 0 60px 0;
   line-height: 1.5;
 }
 
+/* PORTFOLIO HOVER WALL */
 .portfolio-previews {
   position: relative;
-  height: 450px;
-  margin-top: 20px;
+  height: 480px;
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .preview-card {
   position: absolute;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
   background: white;
-  width: 65%;
-  border: 4px solid white;
+  border: 6px solid white;
+  cursor: pointer;
+  will-change: transform; /* Hint for smoother dragging/transform */
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-image {
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .p1 {
+  width: 34%;
+  max-width: 340px;
+  height: auto;
+  aspect-ratio: 4/3;
   left: 0;
-  top: 20px;
+  top: 60px;
   z-index: 1;
 }
 
 .p2 {
+  width: 36%;
+  max-width: 360px;
+  height: auto;
+  aspect-ratio: 4/3;
   right: 0;
-  top: 0px;
+  top: 20px;
   z-index: 2;
 }
 
 .p3 {
+  width: 32%;
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 4/3;
   left: 50%;
-  transform: translateX(-50%) !important;
-  top: 150px;
+  margin-left: -16%;
+  top: 220px;
   z-index: 3;
-  width: 70%;
 }
 
+
+/* FORM SECTION */
 .form-section {
   background-color: white;
   border-radius: 20px;
@@ -185,8 +278,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 20px;
+  max-width: 500px;
   z-index: 10;
+  align-self: flex-start;
+  border: 1px solid #F2F2F2;
 }
 
 .form-meta {
@@ -263,19 +358,91 @@
 }
 
 .footer-watermark {
-  font-size: 8rem;
+  font-size: 12rem;
   font-weight: 700;
   color: rgba(0,0,0,0.02);
   text-align: center;
   position: absolute;
-  bottom: -40px;
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
   letter-spacing: -3px;
   z-index: -1;
+  pointer-events: none;
 }
 
+
+/* 
+  ==========================================
+  INTERACTIVE LIGHTBOX MODAL
+  ==========================================
+*/
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(247, 247, 247, 0.4);
+}
+
+.lightbox-content-wrapper {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  max-height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+  cursor: grab;
+  border: 4px solid white;
+}
+
+.lightbox-image-container:active {
+  cursor: grabbing;
+}
+
+.expanded-image {
+  object-fit: cover;
+}
+
+.lightbox-close-btn {
+  margin-top: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.lightbox-close-btn:hover {
+  background-color: #F9F9F9;
+}
+
+
+/* MISC */
 .made-in-framer {
   position: fixed;
   bottom: 24px;
@@ -292,4 +459,98 @@
   border: 1px solid #EAEAEA;
   color: var(--text-primary);
   z-index: 100;
+}
+
+
+/* 
+  ==========================================
+  RESPONSIVE BREAKPOINTS
+  ==========================================
+*/
+
+/* Tablet Layout (≤ 992px) or 744px based on user input */
+@media (max-width: 992px) {
+  .layout-wrapper {
+    flex-direction: column;
+    max-width: 744px;
+  }
+
+  .sidebar {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px dashed var(--ring-color);
+    padding: 32px 24px;
+  }
+
+  .cta-box {
+    margin-bottom: 0;
+  }
+
+  .links-section {
+    margin-top: 32px;
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+    padding: 60px 24px 100px 24px;
+    align-items: center;
+  }
+
+  .sneak-peek-section {
+    text-align: center;
+    width: 100%;
+  }
+
+  .form-section {
+    align-self: center;
+    width: 100%;
+  }
+
+  .p1, .p2, .p3 {
+    width: 300px;
+    height: 200px;
+  }
+
+  .p1 { left: 0; top: 20px;}
+  .p2 { right: 0; top: 0px;}
+  .p3 { margin-left: -150px; top: 120px;}
+  .portfolio-previews {
+    height: 380px;
+  }
+}
+
+/* Mobile Layout (≤ 480px) or 375px */
+@media (max-width: 480px) {
+  .sneak-peek-title {
+    font-size: 36px;
+  }
+  
+  /* Stack images on mobile */
+  .portfolio-previews {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .preview-card, .p1, .p2, .p3 {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin-left: 0;
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+    transform: none !important; /* Disable rotate on mobile so they stack cleanly */
+  }
+
+  .footer-watermark {
+    font-size: 5rem;
+  }
 }
