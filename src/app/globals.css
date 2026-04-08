@@ -17,8 +17,6 @@ html, body {
   padding: 0;
   min-height: 100vh;
   background-color: var(--bg-color);
-  background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
   color: var(--text-primary);
   font-family: var(--font-geist-sans), sans-serif;
 }
