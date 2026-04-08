@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Mail, X } from "lucide-react";
+import { Mail, X, ArrowUpRight } from "lucide-react";
 import svgPaths from "@/imports/svg-b4gz359txo"; // Defaulting to 1200px paths
 import "./globals.css";
 
@@ -49,9 +49,9 @@ export default function Home() {
   const constraintsRef = useRef<HTMLDivElement>(null);
 
   const previews = [
-    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", initialPos: { left: "10%", top: "15%", rotate: -5 } },
-    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", initialPos: { left: "55%", top: "10%", rotate: 14 } },
-    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", initialPos: { left: "50%", top: "50%", rotate: -7 } },
+    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: "10%", top: "15%", rotate: -5 },
+    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: "55%", top: "10%", rotate: 14 },
+    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", left: "35%", top: "45%", rotate: -7 },
   ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,10 +86,10 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white overflow-x-hidden font-sans font-normal text-[#121212]">
+    <div className="flex min-h-screen bg-white overflow-x-hidden font-sans font-normal text-[#7E7E7E]">
       
       {/* SIDEBAR - Fixed on desktop/tablet */}
-      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-[300px] lg:w-[400px] flex-col border-r border-dashed border-[rgba(125,125,125,0.2)] bg-[#F7F7F7] z-20 overflow-y-auto">
+      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-[300px] lg:w-[400px] flex-col border-r border-[rgba(125,125,125,0.15)] bg-white z-20 overflow-y-auto">
         <div className="flex flex-col justify-between min-h-full p-6 lg:p-10">
           <div className="flex flex-col gap-12">
             
@@ -126,7 +126,7 @@ export default function Home() {
             </div>
 
             {/* CTA Box */}
-            <div className="bg-[rgba(125,125,125,0.07)] rounded-xl p-5 flex items-center gap-3 -mt-6">
+            <div className="bg-[rgba(125,125,125,0.06)] rounded-xl p-5 flex items-center gap-3 -mt-8">
               <div className="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M19 17V21M21 19H17M12 3C12 7.97053 7.97053 12 3 12C7.97053 12 12 16.0295 12 21C12 16.0295 16.0295 12 21 12C16.0295 12 12 7.97053 12 3ZM5 3C5 4.10456 4.10456 5 3 5C4.10456 5 5 5.89544 5 7C5 5.89544 5.89544 5 7 5C5.89544 5 5 4.10456 5 3Z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -140,17 +140,21 @@ export default function Home() {
 
           {/* Contact Links */}
           <div className="flex flex-col">
-            <a href="mailto:itsmitadesign@gmail.com" className="flex items-center justify-between py-3 border-t border-dashed border-[rgba(125,125,125,0.2)] hover:opacity-70 transition-opacity">
-              <Mail className="w-5 h-5 text-[#7e7e7e]" />
-              <div className="flex items-center gap-2 text-sm text-[#7e7e7e]">
-                itsmitadesign@gmail.com <ExternalLink className="w-4 h-4" />
+            <a href="mailto:itsmitadesign@gmail.com" className="flex items-center justify-between py-3 border-t border-[rgba(125,125,125,0.15)] hover:opacity-70 transition-opacity group">
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[#7e7e7e]" />
+                <span className="text-sm text-[#7e7e7e]">itsmitadesign@gmail.com</span>
               </div>
+              <ArrowUpRight className="w-4 h-4 text-[#7e7e7e] opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
-            <a href="https://x.com/itsmitadesign" target="_blank" className="flex items-center justify-between py-3 border-t border-b border-dashed border-[rgba(125,125,125,0.2)] hover:opacity-70 transition-opacity">
-              <X className="w-5 h-5 text-[#7e7e7e]" />
-              <div className="flex items-center gap-2 text-sm text-[#7e7e7e]">
-                @itsmitadesign <ExternalLink className="w-4 h-4" />
+            <a href="https://x.com/itsmitadesign" target="_blank" className="flex items-center justify-between py-3 border-t border-b border-[rgba(125,125,125,0.15)] hover:opacity-70 transition-opacity group">
+              <div className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.1111 13L3 21M19 3L13.0897 9.64914M3 3L16 21H21L8 3H3Z" stroke="#7e7e7e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                </svg>
+                <span className="text-sm text-[#7e7e7e]">@itsmitadesign</span>
               </div>
+              <ArrowUpRight className="w-4 h-4 text-[#7e7e7e] opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
         </div>
@@ -170,7 +174,7 @@ export default function Home() {
         <div className="relative z-10 flex flex-col">
           
           {/* Mobile Header/Profile */}
-          <div className="md:hidden flex flex-col gap-8 p-6 bg-white border-b border-dashed border-[rgba(125,125,125,0.1)]">
+          <div className="md:hidden flex flex-col gap-8 p-6 bg-white border-b border-[rgba(125,125,125,0.1)]">
             <div className="flex items-center justify-between">
               <span className="text-sm text-[#7e7e7e]">Mita Design</span>
               <Clock />
@@ -180,7 +184,7 @@ export default function Home() {
                  <Image src="/images/avatar.png" alt="Mita" fill className="object-cover" />
                </div>
                <div className="flex flex-col gap-1">
-                 <h2 className="text-xl font-medium">Mita</h2>
+                 <h2 className="text-xl font-medium text-[#121212]">Mita</h2>
                  <p className="text-sm text-[#7e7e7e]">Framer Web Designer</p>
                </div>
                <p className="text-sm text-[#7e7e7e] leading-relaxed">
@@ -189,43 +193,45 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Title Section */}
-          <div className="p-6 md:p-12 lg:px-16 lg:pt-20">
-            <h1 className="text-[38px] md:text-[48px] lg:text-[64px] leading-tight font-medium tracking-tight text-[#080808] mb-4">
-              Sneak a peek at<br />what&apos;s coming.
-            </h1>
-            <p className="text-base text-[#7e7e7e] max-w-lg leading-relaxed">
-              Designs done. Currently building in Framer. Check out the previews below.
-            </p>
+          {/* Title Section - Aligned with Sidebar Title */}
+          <div className="p-6 lg:px-10 lg:pt-10"> 
+            <div className="flex flex-col gap-6">
+                <h1 className="text-[38px] md:text-[48px] lg:text-[64px] leading-[1em] font-normal tracking-[-0.05em] text-[#080808]">
+                  Sneak a peek at<br />what&apos;s coming.
+                </h1>
+                <p className="text-base text-[#7e7e7e] max-w-lg leading-relaxed">
+                  Designs done. Currently building in Framer.<br />Check out the previews below.
+                </p>
+            </div>
           </div>
 
-          {/* Portfolio Wall */}
-          <div className="px-6 md:px-12 lg:px-16 py-8">
+          {/* Portfolio Wall - Fixed Drag & Size */}
+          <div className="px-6 md:px-12 lg:px-10 py-8 lg:py-16">
             <div 
               ref={constraintsRef}
-              className="relative w-full h-[320px] lg:h-[500px] border-2 border-dashed border-[rgba(125,125,125,0.2)] rounded-2xl overflow-hidden"
+              className="relative w-full h-[320px] lg:h-[500px] overflow-visible"
             >
               {previews.map((item) => (
                 <motion.div
                   key={item.id}
                   drag
                   dragConstraints={constraintsRef}
-                  dragElastic={0.1}
+                  dragElastic={0.2}
                   dragMomentum={false}
                   dragTransition={{ bounceStiffness: 400, bounceDamping: 30 }}
-                  initial={item.initialPos}
-                  whileHover={{ scale: 1.01, zIndex: 50, rotate: 0 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="absolute w-[34%] max-w-[340px] h-[191px] cursor-grab active:cursor-grabbing"
+                  initial={false}
+                  whileHover={{ scale: 1.01, zIndex: 100, rotate: 0 }}
+                  whileTap={{ cursor: "grabbing" }}
+                  className="absolute w-[34%] max-w-[340px] aspect-[340/191] cursor-grab"
                   style={{
-                    left: item.initialPos.left,
-                    top: item.initialPos.top,
-                    rotate: item.initialPos.rotate
+                    left: item.left,
+                    top: item.top,
+                    rotate: item.rotate
                   }}
                   onClick={() => setActiveImage(item.src)}
                 >
-                  <div className="w-full h-full bg-white rounded-xl p-1.5 shadow-xl border border-[rgba(0,0,0,0.05)]">
-                    <div className="relative w-full h-full rounded-lg overflow-hidden">
+                  <div className="w-full h-full bg-white rounded-[24px] p-2 shadow-2xl border border-[rgba(0,0,0,0.05)] overflow-hidden">
+                    <div className="relative w-full h-full rounded-[16px] overflow-hidden">
                       <Image src={item.src} alt={item.alt} fill className="object-cover" />
                     </div>
                   </div>
@@ -235,11 +241,11 @@ export default function Home() {
           </div>
 
           {/* Form Section */}
-          <div className="px-6 md:px-12 lg:px-16 py-12 lg:py-24 flex justify-center relative">
+          <div className="px-6 md:px-12 lg:px-16 py-12 lg:pt-0 lg:pb-24 flex justify-center relative">
             {/* White Gradient Container */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none" />
             
-            <div className="bg-white rounded-[24px] border border-dashed border-[rgba(125,125,125,0.2)] p-8 w-full max-w-[480px] shadow-sm relative z-10 transition-shadow hover:shadow-md">
+            <div className="bg-white rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all hover:bg-gray-50/50">
               <div className="flex flex-col gap-6">
                 <span className="text-[10px] font-mono font-medium tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
                 <p className="text-[#7e7e7e] leading-relaxed">
@@ -249,11 +255,11 @@ export default function Home() {
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] font-mono font-medium text-[#7e7e7e] uppercase">Name</label>
-                    <input type="text" name="name" required placeholder="Jane Smith" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-2 focus:ring-[#1a1a1a]/10 transition-all font-medium" disabled={loading} />
+                    <input type="text" name="name" required placeholder="Jane Smith" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] font-mono font-medium text-[#7e7e7e] uppercase">Email</label>
-                    <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-2 focus:ring-[#1a1a1a]/10 transition-all font-medium" disabled={loading} />
+                    <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
                   </div>
                   <button type="submit" className="h-12 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 mt-2" disabled={loading}>
                     {loading ? "Sending..." : "Send me the templates"}
@@ -269,12 +275,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Footer Logo Watermark */}
-          <div className="px-6 md:px-12 lg:px-16 pb-20 relative overflow-hidden">
+          {/* Footer Logo Watermark - Aligned to Bottom Sidebar */}
+          <div className="px-6 lg:px-10 pb-[24px] lg:pb-[40px] relative overflow-hidden mt-auto">
              <div className="relative w-full aspect-[5/1] select-none pointer-events-none overflow-hidden">
                 <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain" />
                 {/* 100% relative overlay to create gradient coverage */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-white/0 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent z-10" />
              </div>
           </div>
         </div>
@@ -284,24 +290,26 @@ export default function Home() {
         <div className="fixed bottom-0 right-0 left-0 md:left-[300px] lg:left-[400px] h-20 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
       </main>
 
-      {/* LIGHTBOX MODAL */}
+      {/* LIGHTBOX MODAL - Enlarged */}
       <AnimatePresence>
         {activeImage && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-white/80 backdrop-blur-xl transition-all"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-white/90 backdrop-blur-3xl transition-all"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setActiveImage(null)}
           >
             <motion.div
               drag dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
               dragElastic={0.2}
-              className="relative max-h-[50vh] aspect-auto shadow-2xl rounded-2xl overflow-hidden bg-white border border-gray-100"
+              className="relative h-[85vh] w-[90vw] flex items-center justify-center bg-transparent p-2"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image src={activeImage} alt="Preview" width={800} height={1200} className="w-auto h-full max-h-[50vh] object-contain" />
+              <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
+                <Image src={activeImage} alt="Preview" fill className="object-contain" />
+              </div>
             </motion.div>
-            <button className="absolute top-8 right-8 p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors" onClick={() => setActiveImage(null)}>
-               <X className="w-6 h-6 text-gray-600" />
+            <button className="absolute top-8 right-8 p-3 bg-white/80 hover:bg-white rounded-full transition-all shadow-md z-[110]" onClick={() => setActiveImage(null)}>
+               <X className="w-6 h-6 text-gray-800" />
             </button>
           </motion.div>
         )}
