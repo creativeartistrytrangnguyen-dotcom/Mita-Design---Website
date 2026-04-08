@@ -56,7 +56,8 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const hoverScale = windowWidth >= 1200 ? 1.2 : 1.1;
+  const baseScale = windowWidth >= 1440 ? 1.25 : 1;
+  const hoverScale = windowWidth >= 1440 ? 1.35 : (windowWidth >= 1200 ? 1.2 : 1.1);
 
   const previews = [
     { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: "22%", top: "18%", rotate: -5 },
@@ -86,10 +87,11 @@ export default function Home() {
         setStatus({ type: "success", message: "Success! You're on the list." });
         (e.target as HTMLFormElement).reset();
       } else {
-        throw new Error();
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to subscribe");
       }
-    } catch (err) {
-      setStatus({ type: "error", message: "Something went wrong. Please try again." });
+    } catch (err: any) {
+      setStatus({ type: "error", message: err.message || "Something went wrong. Please try again." });
     } finally {
       setLoading(false);
     }
@@ -252,29 +254,29 @@ export default function Home() {
               className="relative w-full h-[320px] lg:h-[500px] overflow-visible"
             >
               {previews.map((item) => (
-                <motion.div
-                  key={item.id}
-                  drag
-                  dragConstraints={constraintsRef}
-                  dragElastic={0.1}
-                  dragMomentum={false}
-                  initial="rest"
-                  whileHover="hover"
-                  animate="rest"
-                  layoutId={item.id}
-                  className="absolute w-[268px] h-[191px] cursor-grab select-none"
-                  style={{
-                    left: item.left,
-                    top: item.top,
-                    rotate: item.rotate
-                  }}
-                >
-                  <motion.div 
-                    variants={{
-                      rest: { scale: 1, rotate: item.rotate },
-                      hover: { scale: hoverScale, rotate: 0 }
+                  <motion.div
+                    key={item.id}
+                    drag
+                    dragConstraints={constraintsRef}
+                    dragElastic={0.1}
+                    dragMomentum={false}
+                    initial="rest"
+                    whileHover="hover"
+                    animate="rest"
+                    layoutId={item.id}
+                    className={`absolute cursor-grab select-none ${windowWidth >= 1440 ? "w-[340px] h-[242px]" : "w-[268px] h-[191px]"}`}
+                    style={{
+                      left: item.left,
+                      top: item.top,
+                      rotate: item.rotate
                     }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <motion.div 
+                      variants={{
+                        rest: { scale: 1, rotate: item.rotate },
+                        hover: { scale: hoverScale, rotate: 0 }
+                      }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="w-full h-full bg-white rounded-[12px] p-[5px] shadow-2xl border border-[rgba(0,0,0,0.05)] overflow-hidden relative"
                   >
                     <div className="relative w-full h-full rounded-[8px] overflow-hidden pointer-events-none">
@@ -305,7 +307,7 @@ export default function Home() {
           <div className="px-6 md:px-12 lg:px-16 py-12 lg:pt-0 lg:pb-24 flex justify-center relative mt-auto">
             <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none" />
             
-            <div className="bg-white rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all">
+            <div className="bg-gradient-to-b from-white/0 to-white rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all">
               <div className="flex flex-col gap-6">
                 <span className="text-[10px] font-mono font-medium tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
                 <p className="text-[#7e7e7e] leading-relaxed">
@@ -338,7 +340,7 @@ export default function Home() {
           {/* Footer Logo Watermark - Spacing +30px */}
           <div className="px-6 lg:px-10 pb-[24px] lg:pb-[40px] relative mt-[30px] lg:mt-[50px]">
              <div className="relative w-full h-[100px] md:h-[150px] lg:h-[220px] select-none pointer-events-none overflow-visible">
-                <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain object-bottom" />
+                <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain object-bottom opacity-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent z-10" />
              </div>
           </div>

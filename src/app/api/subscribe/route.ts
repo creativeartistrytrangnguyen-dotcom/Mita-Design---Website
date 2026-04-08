@@ -49,8 +49,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, message: "Subscription successful" });
   } catch (error) {
     console.error("Subscription Error:", error);
+    const errMessage = error instanceof Error ? error.message : "Internal Server Error";
     return NextResponse.json(
-      { success: false, message: "Internal Server Error" },
+      { success: false, message: `Lỗi: ${errMessage}` },
       { status: 500 }
     );
   }
