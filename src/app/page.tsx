@@ -56,8 +56,8 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const baseScale = windowWidth >= 1440 ? 1.25 : 1;
-  const hoverScale = windowWidth >= 1440 ? 1.35 : (windowWidth >= 1200 ? 1.2 : 1.1);
+  const isTouchDevice = windowWidth < 1024;
+  const hoverScale = isTouchDevice ? 1 : 1.1;
 
   const previews = [
     { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: "22%", top: "18%", rotate: -5 },
@@ -274,11 +274,12 @@ export default function Home() {
                     <motion.div 
                       variants={{
                         rest: { scale: 1, rotate: item.rotate },
-                        hover: { scale: hoverScale, rotate: 0 }
+                        hover: { scale: hoverScale, rotate: isTouchDevice ? item.rotate : 0 }
                       }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="w-full h-full bg-white rounded-[12px] p-[5px] shadow-2xl border border-[rgba(0,0,0,0.05)] overflow-hidden relative"
-                  >
+                      className="w-full h-full bg-white rounded-[12px] p-[5px] shadow-2xl border border-[rgba(0,0,0,0.05)] overflow-hidden relative cursor-pointer"
+                      onClick={() => setActiveImage(item.src)}
+                    >
                     <div className="relative w-full h-full rounded-[8px] overflow-hidden pointer-events-none">
                       <Image src={item.src} alt={item.alt} fill className="object-cover" />
                     </div>
@@ -287,7 +288,7 @@ export default function Home() {
                     <motion.button
                       variants={{
                         rest: { opacity: 0, scale: 0.8 },
-                        hover: { opacity: 1, scale: 1 }
+                        hover: { opacity: isTouchDevice ? 0 : 1, scale: isTouchDevice ? 0.8 : 1 }
                       }}
                       onClick={(e) => {
                         e.stopPropagation();
