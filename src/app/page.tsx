@@ -343,7 +343,7 @@ export default function Home() {
           {/* Footer Logo Watermark - Spacing +30px */}
           <div className="px-6 lg:px-10 pb-[24px] lg:pb-[40px] relative mt-[30px] lg:mt-[50px]">
              <div className="relative w-full h-[100px] md:h-[150px] lg:h-[220px] select-none pointer-events-none overflow-visible">
-                <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain object-bottom opacity-50" />
+                <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain object-bottom opacity-30" />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent z-10" />
              </div>
           </div>
