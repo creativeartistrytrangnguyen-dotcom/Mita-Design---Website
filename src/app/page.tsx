@@ -7,8 +7,10 @@ import "./page.css";
 
 function Clock() {
   const [time, setTime] = useState("");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const updateTime = () => {
       const now = new Date();
       const gmt7 = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (7 * 3600000));
@@ -22,17 +24,52 @@ function Clock() {
     return () => clearInterval(tick);
   }, []);
 
-  return <div className="clock mono">{time || "--:--:-- GMT+7"}</div>;
+  if (!mounted) return <div className="clock mono" style={{ visibility: "hidden" }}>00:00:00 GMT+7</div>;
+
+  return <div className="clock mono">{time || "00:00:00 GMT+7"}</div>;
 }
 
 export default function Home() {
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
   const previews = [
     { id: "p1", src: "/images/preview1.png", alt: "Preview 1", className: "preview-card p1" },
     { id: "p3", src: "/images/preview3.png", alt: "Preview 3", className: "preview-card p3" },
     { id: "p2", src: "/images/preview2.png", alt: "Preview 2", className: "preview-card p2" },
   ];
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+    };
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus({ type: "success", message: "Success! You're on the list." });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error();
+      }
+    } catch (err) {
+      setStatus({ type: "error", message: "Something went wrong. Please try again." });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="layout-wrapper">
@@ -121,7 +158,7 @@ export default function Home() {
                 onClick={() => setActiveImage(item.src)}
               >
                 <div className="image-wrapper">
-                  <Image src={item.src} alt={item.alt} fill className="preview-image" />
+                  <Image src={item.src} alt={item.alt} fill className="preview-image" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                 </div>
               </motion.div>
             ))}
@@ -132,17 +169,29 @@ export default function Home() {
           <p className="form-meta mono">GET THEM FIRST</p>
           <p className="form-desc">Drop your email and I&apos;ll send you all 3 the moment they&apos;re live. <strong>Free, forever.</strong></p>
           
-          <form className="subscribe-form" onSubmit={(e) => e.preventDefault()}>
-            <label>
-              <span className="mono label-text">NAME</span>
-              <input type="text" placeholder="Jane Smith" className="form-input" />
-            </label>
-            <label>
-              <span className="mono label-text">EMAIL</span>
-              <input type="email" placeholder="jane@framer.com" className="form-input" />
-            </label>
-            <button type="submit" className="form-btn">Send me the templates</button>
-          </form>
+          <form className="subscribe-form" onSubmit={handleSubmit}>
+          <label>
+            <span className="mono label-text">NAME</span>
+            <input type="text" name="name" required placeholder="Jane Smith" className="form-input" disabled={loading} />
+          </label>
+          <label>
+            <span className="mono label-text">EMAIL</span>
+            <input type="email" name="email" required placeholder="jane@framer.com" className="form-input" disabled={loading} />
+          </label>
+          <button type="submit" className="form-btn" disabled={loading}>
+            {loading ? "Sending..." : "Send me the templates"}
+          </button>
+          
+          {status && (
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`status-message ${status.type}`}
+            >
+              {status.message}
+            </motion.p>
+          )}
+        </form>
         </section>
 
         {/* FOOTER WATERMARK */}
@@ -175,7 +224,7 @@ export default function Home() {
                 layoutId={`preview-container-${previews.find(p => p.src === activeImage)?.id}`}
                 onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
               >
-                <Image src={activeImage} alt="Expanded Preview" fill className="expanded-image" />
+                <Image src={activeImage} alt="Expanded Preview" fill className="expanded-image" sizes="90vw" />
               </motion.div>
             </div>
 

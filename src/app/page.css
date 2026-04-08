@@ -265,6 +265,7 @@
   left: 0;
   top: 60px;
   z-index: 1;
+  transform: rotate(-4deg);
 }
 
 .p2 {
@@ -275,6 +276,7 @@
   right: 0;
   top: 20px;
   z-index: 2;
+  transform: rotate(4deg);
 }
 
 .p3 {
@@ -377,10 +379,24 @@
   opacity: 0.9;
 }
 
+.status-message {
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.status-message.success {
+  color: var(--accent-green);
+}
+
+.status-message.error {
+  color: #FF4D4F;
+}
+
 .footer-watermark {
   font-size: 15vw;
   font-weight: 700;
-  color: rgba(0,0,0,0.02);
+  color: rgba(0,0,0,0.03); /* Slightly more visible for premium feel */
   text-align: center;
   position: absolute;
   bottom: -4%;
