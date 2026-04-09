@@ -341,7 +341,7 @@ export default function Home() {
                     <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
                   </div>
                   <button type="submit" className="h-12 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 mt-2" disabled={loading}>
-                    {loading ? "Sending..." : "Send me the templates"}
+                    {loading ? "Sending..." : "Notify me when it's live"}
                   </button>
                   
                   {status && (
