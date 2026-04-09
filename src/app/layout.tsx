@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: '/icon.png?v=57', type: 'image/png' }
+    ]
+  },
   robots: {
     index: true,
     follow: true,
