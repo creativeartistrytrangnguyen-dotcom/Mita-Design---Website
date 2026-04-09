@@ -61,8 +61,8 @@ export default function Home() {
 
   const previews = [
     { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: "22%", top: "18%", rotate: -5 },
-    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: "48%", top: "12%", rotate: 14 },
     { id: "p2", src: "/images/preview2.png", alt: "Preview 2", left: "34%", top: "42%", rotate: -7 },
+    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: "48%", top: "12%", rotate: 7 },
   ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -268,7 +268,10 @@ export default function Home() {
                     style={{
                       left: item.left,
                       top: item.top,
-                      rotate: item.rotate
+                    }}
+                    variants={{
+                      rest: { zIndex: 1 },
+                      hover: { zIndex: 50 },
                     }}
                   >
                     <motion.div 
@@ -341,9 +344,11 @@ export default function Home() {
           </div>
 
           {/* Footer Logo Watermark - Spacing +30px */}
-          <div className="px-6 lg:px-10 pb-[24px] lg:pb-[40px] relative mt-[30px] lg:mt-[50px]">
-             <div className="relative w-full h-[100px] md:h-[150px] lg:h-[220px] select-none pointer-events-none overflow-visible">
-                <Image src="/images/mita-logo-watermark.png" alt="Mita Design" fill className="object-contain object-bottom opacity-30" />
+          <div className="px-0 md:px-6 lg:px-10 pb-[24px] lg:pb-[40px] relative mt-[30px] lg:mt-[50px]">
+             <div className="relative w-full select-none pointer-events-none overflow-hidden flex items-end justify-center">
+                <div className="relative w-[120%] md:w-full flex justify-center ml-[-10%] md:ml-0">
+                  <Image src="/images/mita-logo-watermark.png" alt="Mita Design" width={1200} height={400} className="w-full h-auto object-cover object-bottom opacity-30" />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent z-10" />
              </div>
           </div>
