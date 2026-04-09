@@ -59,10 +59,21 @@ export default function Home() {
   const isTouchDevice = windowWidth < 1024;
   const hoverScale = isTouchDevice ? 1 : 1.1;
 
+  const isLarge = windowWidth >= 1440;
+  const cardWidth = isLarge ? 340 : 268;
+  const halfWidth = cardWidth / 2;
+  const spacing = windowWidth < 768 ? 30 : windowWidth < 1024 ? 60 : 130;
+
+  const getResponsiveLeft = (cardIndex: number) => {
+    if (cardIndex === 1) return `calc(50% - ${halfWidth + spacing}px)`;
+    if (cardIndex === 2) return `calc(50% - ${halfWidth}px)`;
+    return `calc(50% - ${halfWidth - spacing}px)`;
+  };
+
   const previews = [
-    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: "22%", top: "18%", rotate: -5 },
-    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", left: "34%", top: "42%", rotate: -7 },
-    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: "48%", top: "12%", rotate: 7 },
+    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: getResponsiveLeft(1), top: "18%", rotate: -5 },
+    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", left: getResponsiveLeft(2), top: "42%", rotate: -7 },
+    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: getResponsiveLeft(3), top: "12%", rotate: 7 },
   ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
