@@ -322,9 +322,10 @@ export default function Home() {
 
           {/* Form Section */}
           <div className="px-6 md:px-12 lg:px-16 py-12 lg:pt-0 lg:pb-24 flex justify-center relative mt-auto">
-            <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none" />
-            
-            <div className="bg-gradient-to-b from-white/0 to-white/100 rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all">
+            <div 
+              style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%)' }}
+              className="rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all"
+            >
               <div className="flex flex-col gap-6">
                 <span className="text-[10px] font-mono font-medium tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
                 <p className="text-[#7e7e7e] leading-relaxed">
