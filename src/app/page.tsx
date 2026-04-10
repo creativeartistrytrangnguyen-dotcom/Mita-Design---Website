@@ -187,14 +187,14 @@ export default function Home() {
       <main className="flex-1 md:ml-[300px] lg:ml-[400px] flex flex-col relative h-screen overflow-y-auto">
         
         {/* Background Dots */}
-        <div className="absolute inset-0 pointer-events-none z-0" 
-             style={{ 
-               backgroundImage: "radial-gradient(#EBEBEB 1.5px, transparent 1.5px)", 
-               backgroundSize: "24px 24px" 
-             }}>
-        </div>
-
         <div className="relative z-10 flex flex-col min-h-full">
+          {/* Background Dots - Moved here to cover full scrollable height */}
+          <div className="absolute inset-0 pointer-events-none -z-10" 
+               style={{ 
+                 backgroundImage: "radial-gradient(#EBEBEB 1.5px, transparent 1.5px)", 
+                 backgroundSize: "24px 24px" 
+               }}>
+          </div>
           
           {/* Mobile Header/Profile - No border as requested */}
           <div className="md:hidden flex flex-col gap-8 p-6 bg-white">
