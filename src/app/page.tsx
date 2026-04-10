@@ -187,14 +187,14 @@ export default function Home() {
       <main className="flex-1 md:ml-[300px] lg:ml-[400px] flex flex-col relative h-screen overflow-y-auto">
         
         {/* Background Dots */}
+        <div className="absolute inset-0 pointer-events-none z-0" 
+             style={{ 
+               backgroundImage: "radial-gradient(#EBEBEB 1.5px, transparent 1.5px)", 
+               backgroundSize: "24px 24px" 
+             }}>
+        </div>
+
         <div className="relative z-10 flex flex-col min-h-full">
-          {/* Background Dots - Moved here to cover full scrollable height */}
-          <div className="absolute inset-0 pointer-events-none -z-10" 
-               style={{ 
-                 backgroundImage: "radial-gradient(#EBEBEB 1.5px, transparent 1.5px)", 
-                 backgroundSize: "24px 24px" 
-               }}>
-          </div>
           
           {/* Mobile Header/Profile - No border as requested */}
           <div className="md:hidden flex flex-col gap-8 p-6 bg-white">
@@ -322,27 +322,26 @@ export default function Home() {
 
           {/* Form Section */}
           <div className="px-6 md:px-12 lg:px-16 py-12 lg:pt-0 lg:pb-24 flex justify-center relative mt-auto">
-            <div 
-              style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1) 100%)' }}
-              className="rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all shadow-sm"
-            >
+            <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none" />
+            
+            <div className="bg-gradient-to-b from-white/0 to-white rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all">
               <div className="flex flex-col gap-6">
                 <span className="text-[10px] font-mono font-medium tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
                 <p className="text-[#7e7e7e] leading-relaxed">
-                  Drop your email and I&apos;ll send you all 3 the moment they&apos;re live. <span className="font-medium text-[#1a1a1a]">Free, forever.</span>
+                  Drop your email and I&apos;ll send you all 3 templates one by one as they go live. <span className="font-medium text-[#1a1a1a]">100% free</span>
                 </p>
                 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] font-mono font-medium text-[#7e7e7e] uppercase">Name</label>
-                    <input type="text" name="name" required placeholder="Jane Smith" className="h-12 px-4 bg-white border border-[rgba(0,0,0,0.05)] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
+                    <input type="text" name="name" required placeholder="Jane Smith" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] font-mono font-medium text-[#7e7e7e] uppercase">Email</label>
-                    <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-white border border-[rgba(0,0,0,0.05)] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
+                    <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
                   </div>
                   <button type="submit" className="h-12 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 mt-2" disabled={loading}>
-                    {loading ? "Sending..." : "Send me the templates"}
+                    {loading ? "Sending..." : "Notify me when it's live"}
                   </button>
                   
                   {status && (
