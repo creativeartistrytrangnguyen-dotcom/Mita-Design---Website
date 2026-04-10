@@ -71,9 +71,9 @@ export default function Home() {
   };
 
   const previews = [
-    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: getResponsiveLeft(1), top: "18%", rotate: -5 },
-    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", left: getResponsiveLeft(2), top: "42%", rotate: -7 },
-    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: getResponsiveLeft(3), top: "12%", rotate: 7 },
+    { id: "p1", src: "/images/preview1.png", alt: "Preview 1", left: getResponsiveLeft(1), top: "calc(18% - 20px)", rotate: -5 },
+    { id: "p2", src: "/images/preview2.png", alt: "Preview 2", left: getResponsiveLeft(2), top: "calc(42% - 20px)", rotate: -7 },
+    { id: "p3", src: "/images/preview3.png", alt: "Preview 3", left: getResponsiveLeft(3), top: "calc(12% - 20px)", rotate: 7 },
   ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -324,11 +324,11 @@ export default function Home() {
           <div className="px-6 md:px-12 lg:px-16 py-12 lg:pt-0 lg:pb-24 flex justify-center relative mt-auto">
             <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none" />
             
-            <div className="bg-gradient-to-b from-white/0 to-white rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all">
+            <div className="bg-gradient-to-b from-white/0 to-white/100 rounded-[24px] border border-dashed border-[rgba(0,0,0,0.1)] p-8 w-full max-w-[480px] relative z-10 transition-all">
               <div className="flex flex-col gap-6">
                 <span className="text-[10px] font-mono font-medium tracking-[2px] uppercase text-[#7e7e7e]">GET THEM FIRST</span>
                 <p className="text-[#7e7e7e] leading-relaxed">
-                  Drop your email and I&apos;ll send you all 3 the moment they&apos;re live. <span className="font-medium text-[#1a1a1a]">Free, forever.</span>
+                  Drop your email and I&apos;ll send you all 3 templates one by one as they go live. <span className="font-medium text-[#1a1a1a]">100% free</span>
                 </p>
                 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -341,7 +341,7 @@ export default function Home() {
                     <input type="email" name="email" required placeholder="jane@framer.com" className="h-12 px-4 bg-[#f2f2f2] rounded-xl outline-none focus:ring-1 focus:ring-[#1a1a1a]/20 transition-all font-medium text-[#7E7E7E]" disabled={loading} />
                   </div>
                   <button type="submit" className="h-12 bg-[#1a1a1a] text-white rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 mt-2" disabled={loading}>
-                    {loading ? "Sending..." : "Notify me when it's live"}
+                    {loading ? "Sending..." : "Get the templates"}
                   </button>
                   
                   {status && (
