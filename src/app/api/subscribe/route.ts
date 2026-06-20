@@ -46,6 +46,32 @@ export async function POST(req: Request) {
       });
     }
 
+    // 3. Gửi dữ liệu vào Loops.so
+    const loopsApiKey = process.env.LOOPS_API_KEY;
+    if (loopsApiKey) {
+      try {
+        const loopsResponse = await fetch("https://app.loops.so/api/v1/contacts/create", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${loopsApiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            firstName: name,
+            source: "Website Signup",
+          }),
+        });
+
+        if (!loopsResponse.ok) {
+          const errorData = await loopsResponse.json();
+          console.error("Loops API error:", errorData);
+        }
+      } catch (loopsError) {
+        console.error("Failed to send contact to Loops:", loopsError);
+      }
+    }
+
     return NextResponse.json({ success: true, message: "Subscription successful" });
   } catch (error) {
     console.error("Subscription Error:", error);
